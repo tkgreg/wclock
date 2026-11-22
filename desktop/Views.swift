@@ -222,58 +222,6 @@ struct Pixels: View {
     }
 }
 
-struct DotClock: View {
-    let time: String
-
-    private static let glyphs: [Character: [String]] = [
-        "0": ["01110", "11011", "10001", "10001", "10001", "11011", "01110"],
-        "1": ["00100", "01100", "00100", "00100", "00100", "00100", "01110"],
-        "2": ["01110", "10001", "00001", "00010", "00100", "01000", "11111"],
-        "3": ["11110", "00001", "00001", "01110", "00001", "00001", "11110"],
-        "4": ["00010", "00110", "01010", "10010", "11111", "00010", "00010"],
-        "5": ["11111", "10000", "10000", "11110", "00001", "00001", "11110"],
-        "6": ["01110", "10000", "10000", "11110", "10001", "10001", "01110"],
-        "7": ["11111", "00001", "00010", "00100", "01000", "01000", "01000"],
-        "8": ["01110", "10001", "10001", "01110", "10001", "10001", "01110"],
-        "9": ["01110", "10001", "10001", "01111", "00001", "00001", "01110"],
-        ":": ["0", "0", "1", "0", "1", "0", "0"],
-        "A": ["01110", "10001", "10001", "11111", "10001", "10001", "10001"],
-        "P": ["11110", "10001", "10001", "11110", "10000", "10000", "10000"],
-        "M": ["10001", "11011", "10101", "10101", "10001", "10001", "10001"],
-        " ": Array(repeating: "00", count: 7),
-    ]
-
-    var body: some View {
-        let glyphs = time.compactMap { Self.glyphs[$0] }
-        let columns = glyphs.reduce(0) { $0 + $1[0].count + 2 } - 2
-
-        Canvas { context, size in
-            guard columns > 0 else { return }
-            let pitch = min(3.5, size.width / CGFloat(columns))
-            let diameter = pitch * 0.76
-            let top = (size.height - pitch * 7) / 2
-            var offset = 0
-            var dots = Path()
-            for glyph in glyphs {
-                for (row, line) in glyph.enumerated() {
-                    for (column, value) in line.enumerated() where value == "1" {
-                        dots.addEllipse(in: CGRect(
-                            x: CGFloat(offset + column) * pitch,
-                            y: top + CGFloat(row) * pitch,
-                            width: diameter, height: diameter
-                        ))
-                    }
-                }
-                offset += glyph[0].count + 2
-            }
-            context.fill(dots, with: .color(Theme.ink))
-        }
-        .frame(height: 26)
-        .accessibilityLabel("Local time")
-        .accessibilityValue(time)
-    }
-}
-
 struct CityCard: View {
     let city: City
     let selected: Bool

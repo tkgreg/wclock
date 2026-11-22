@@ -1,0 +1,93 @@
+// !$*UTF8*$!
+{
+    archiveVersion = 1;
+    objectVersion = 56;
+    objects = {
+        A10000000000000000000001 = {
+            isa = PBXProject;
+            buildConfigurationList = A10000000000000000000002;
+            compatibilityVersion = "Xcode 14.0";
+            developmentRegion = en;
+            mainGroup = A10000000000000000000003;
+            productRefGroup = A10000000000000000000004;
+            targets = (A10000000000000000000005);
+        };
+        A10000000000000000000002 = {
+            isa = XCConfigurationList;
+            buildConfigurations = (A10000000000000000000006);
+            defaultConfigurationName = Release;
+        };
+        A10000000000000000000003 = {
+            isa = PBXGroup;
+            children = (
+                A10000000000000000000010, A10000000000000000000011,
+                A10000000000000000000012, A10000000000000000000013,
+                A10000000000000000000004,
+            );
+            sourceTree = "<group>";
+        };
+        A10000000000000000000004 = {
+            isa = PBXGroup;
+            children = (A10000000000000000000007);
+            name = Products;
+            sourceTree = "<group>";
+        };
+        A10000000000000000000005 = {
+            isa = PBXNativeTarget;
+            buildConfigurationList = A10000000000000000000008;
+            buildPhases = (A10000000000000000000009);
+            name = WorldClockWidget;
+            productName = WorldClockWidget;
+            productReference = A10000000000000000000007;
+            productType = "com.apple.product-type.app-extension";
+        };
+        A10000000000000000000006 = {
+            isa = XCBuildConfiguration;
+            buildSettings = { SDKROOT = macosx; MACOSX_DEPLOYMENT_TARGET = 14.0; };
+            name = Release;
+        };
+        A10000000000000000000007 = {
+            isa = PBXFileReference;
+            explicitFileType = "wrapper.app-extension";
+            path = WorldClockWidget.appex;
+            sourceTree = BUILT_PRODUCTS_DIR;
+        };
+        A10000000000000000000008 = {
+            isa = XCConfigurationList;
+            buildConfigurations = (A1000000000000000000000A);
+            defaultConfigurationName = Release;
+        };
+        A10000000000000000000009 = {
+            isa = PBXSourcesBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+                A10000000000000000000020, A10000000000000000000021,
+                A10000000000000000000022, A10000000000000000000023,
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        A1000000000000000000000A = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                APPLICATION_EXTENSION_API_ONLY = YES;
+                CODE_SIGNING_ALLOWED = NO;
+                INFOPLIST_FILE = widget/Info.plist;
+                PRODUCT_BUNDLE_IDENTIFIER = org.worldclock.desktop.widget;
+                PRODUCT_NAME = WorldClockWidget;
+                SKIP_INSTALL = YES;
+                SWIFT_OPTIMIZATION_LEVEL = "-O";
+                SWIFT_VERSION = 5.0;
+            };
+            name = Release;
+        };
+        A10000000000000000000010 = { isa = PBXFileReference; path = Models.swift; sourceTree = "<group>"; };
+        A10000000000000000000011 = { isa = PBXFileReference; path = DotClock.swift; sourceTree = "<group>"; };
+        A10000000000000000000012 = { isa = PBXFileReference; path = widget/WidgetSettings.swift; sourceTree = "<group>"; };
+        A10000000000000000000013 = { isa = PBXFileReference; path = widget/WorldClockWidget.swift; sourceTree = "<group>"; };
+        A10000000000000000000020 = { isa = PBXBuildFile; fileRef = A10000000000000000000010; };
+        A10000000000000000000021 = { isa = PBXBuildFile; fileRef = A10000000000000000000011; };
+        A10000000000000000000022 = { isa = PBXBuildFile; fileRef = A10000000000000000000012; };
+        A10000000000000000000023 = { isa = PBXBuildFile; fileRef = A10000000000000000000013; };
+    };
+    rootObject = A10000000000000000000001;
+}

@@ -23,7 +23,7 @@ cargo build --release --locked
 ## macOS desktop app
 
 Open `target/desktop/WorldClock.app` on macOS 14 or later. To build it yourself,
-run `./desktop/build.sh` with Rust, Cargo, and the macOS Swift toolchain installed.
+run `./desktop/build.sh` with Rust, Cargo, and Xcode installed.
 
 The desktop app uses the same configuration file as `wclock` and picks up saved
 terminal changes while the window is open. Drag a city card onto another card to
@@ -31,6 +31,20 @@ move it to that position and save the order. Use the arrow keys to select or mov
 D to remove, R to reorder, M for meetings, G for grid or list, T for the clock
 format, S to show or hide seconds, and Q to quit. Desktop cards use weather symbols and a sun path that shows progress from sunrise to sunset. In the Add dialog, Ctrl+N opens
 manual entry. Use Tab to move through form fields and Esc to go back.
+
+### macOS widget
+
+Launch WorldClock once, then right-click the desktop and choose **Edit
+Widgets**. Search for **WorldClock** and choose a size. Small shows the first
+saved city, Medium shows up to three, and Large shows up to six. Cities appear
+in saved order, with day offsets relative to the first city. The widgets use
+the app's 12/24-hour setting and show temperature in Celsius when available.
+macOS controls when widgets redraw.
+
+Local builds share a settings snapshot in your Application Support folder.
+The widget has read-only access to that single file. For an App Group build,
+set `WORLDCLOCK_SIGNING_IDENTITY` to your signing identity and
+`WORLDCLOCK_APP_GROUP` to your team-prefixed group identifier.
 
 ## Controls
 

@@ -2,16 +2,6 @@ import AppKit
 import Combine
 import SwiftUI
 
-enum Theme {
-    static let background = Color(red: 11/255, green: 12/255, blue: 22/255)
-    static let ink = Color(red: 221/255, green: 247/255, blue: 1)
-    static let accent = Color(red: 130/255, green: 251/255, blue: 156/255)
-    static let selection = Color(red: 31/255, green: 37/255, blue: 58/255)
-    static let border = Color(red: 45/255, green: 52/255, blue: 80/255)
-    static let muted = Color(red: 134/255, green: 167/255, blue: 223/255)
-    static let panel = Color(red: 17/255, green: 20/255, blue: 34/255)
-}
-
 enum Dialog: Equatable {
     case add, manual, edit, meetingLocation, meetingTime, repeatedTime, delete
 }
@@ -89,6 +79,7 @@ final class Dashboard: ObservableObject {
             let previousCity = selectedCity
             let previousLocations = cities
             preferences = try Engine.request("load")
+            WidgetSettings.publish(preferences)
             configStamp = stamp
             selected = previousCity.flatMap { cities.firstIndex(of: $0) }
                 ?? min(selected, max(0, cities.count - 1))
@@ -145,6 +136,7 @@ final class Dashboard: ObservableObject {
             configStamp = currentConfigStamp()
             let locationsChanged = configuration.locations != cities
             preferences = configuration
+            WidgetSettings.publish(preferences)
             if locationsChanged {
                 nextWeather = .distantPast
                 refreshSolar()
